@@ -1,0 +1,6 @@
+Technical & Operational Details
+
+    Power Output: Provides up to 1800W of peak power; engineered to power multiple cordless tools simultaneously.
+    Battery Technology: Uses DeWalt’s FLEXVOLT battery technology with smart energy management.
+    Connections: Integrated ports (AC, DC, USB) to power or recharge additional tools on scene.
+    Integration: Seamlessly works with 60V MAX and 20V MAX tool lines. Sharing battery technology reduces logistics on the fire ground.

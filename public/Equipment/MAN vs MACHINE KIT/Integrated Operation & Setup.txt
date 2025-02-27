@@ -1,0 +1,14 @@
+Integrated Operation & Setup
+
+    Deployment:
+        Open the Pelican case; verify all components are present and in good condition.
+        Connect the preset regulator to an SCBA or high-pressure air source.
+        Attach color-coded 16′ hoses to the master control kit and air lifting bags.
+        Use the Deadman controller to slowly inflate the bags under the load (start with the smallest bag for delicate extrications).
+        Gradually lift the machine or trapped victim, monitoring pressure on the digital controller.
+        If needed, use the plastic felling wedge to initiate a gap before bag insertion.
+
+    Integration:
+    • All air bags use the same high-pressure regulator and controller for synchronized lifting.
+    • Hoses and fittings are color-coded for rapid connection.
+    • The kit’s modular design lets you tailor the setup to the specific rescue scenario (e.g., using KPI-3 for tight gaps and KPI-12 for large load distribution).

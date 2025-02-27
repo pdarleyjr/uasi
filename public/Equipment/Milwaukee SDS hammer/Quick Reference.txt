@@ -1,0 +1,14 @@
+Milwaukee SDS hammer
+
+Summary
+
+A compact, cordless SDS hammer designed for drilling and light chiseling in concrete, masonry, and steel. Powered by Milwaukee’s M18 FUEL system, it features a brushless motor, variable speed, and high impact energy for precision work in rescue or structural breaching tasks.
+
+Quick Reference Bullet Points
+
+    Impact Energy: ~2 Joules
+    RPM: 1,400 max, 4,900 BPM
+    Modes: Drill, hammer-drill, chipping
+    SDS: SDS-plus system for bit changes
+    Integration: Uses M18 battery system
+    Safety: Always use proper PPE and two-handed operation

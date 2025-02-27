@@ -1,0 +1,12 @@
+ V-Strut
+
+Summary
+
+A lightweight, telescopic vehicle stabilization strut designed for rapid deployment during extrication. The V-Strut integrates a V-shaped head (with serrated “snout”), a non-slip base, and a ratchet-tensioned strap system to provide reliable stabilization for overturned or shifting vehicles.
+
+Quick Reference Bullet Points
+
+    Capacity: ~16 kN (3,600 lbs)
+    Mechanism: Telescopic with auto-lock pins
+    Deployment: Base on solid ground, maintain 45–60° angle
+    Maintenance: Regularly inspect V-head and lubricate moving parts

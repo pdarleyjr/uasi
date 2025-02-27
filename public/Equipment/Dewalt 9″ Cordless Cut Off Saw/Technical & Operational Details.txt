@@ -1,0 +1,8 @@
+Technical & Operational Details
+
+    Blade & RPM: Uses a 9″ blade spinning up to 6,500 RPM.
+    Cutting Depth: Capable of cutting through 3–3/4″ deep concrete or metal.
+    Motor: Brushless design increases efficiency and durability.
+    Water Feed Ports: Integrated water delivery for dust suppression.
+    Battery Integration: Uses the same battery ecosystem as other DeWalt 60V tools.
+    Quick Blade Change: Tool-free blade change system.

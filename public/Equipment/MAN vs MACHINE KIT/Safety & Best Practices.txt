@@ -1,0 +1,12 @@
+Safety & Best Practices
+
+    Pre-Deployment:
+    • Check all components for wear or damage.
+    • Verify that air supply pressure is within operational limits.
+    During Operation:
+    • Always monitor pressure gauges; do not exceed bag rated pressures (typically ≤118 psi).
+    • Use two-person operation for inflation: one to control the valve, one to monitor the victim and load.
+    • Maintain communication between team members throughout the lift.
+    Post-Operation:
+    • Slowly deflate bags and secure the load before removing the kit.
+    • Clean and inspect all components; record any damages or maintenance needs.

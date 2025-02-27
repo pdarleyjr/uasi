@@ -1,0 +1,12 @@
+FLEXVOLT Portable Power Station (Tool Only) – S/N# DCB1800B (DEWALT)
+Summary
+
+The FLEXVOLT Portable Power Station is a battery-based, high-output power source designed to drive DeWalt’s cordless 60V MAX and 20V MAX tools. It is engineered for portability, rapid charging, and reliable operation in demanding fire/rescue scenarios.
+
+Quick Reference Bullet Points
+
+    Peak Power: ~1800W output
+    Compatibility: Works with 60V/20V tools
+    Connections: AC, DC, USB outputs available
+    Maintenance: Keep contacts clean, store in dry environment
+    Safety: Use proper PPE and follow lockout procedures

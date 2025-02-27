@@ -1,0 +1,469 @@
+---
+interface Props {
+  name: string;
+  image: string;
+  quickReference: string;
+  technicalDetails: string;
+  safetyPractices: string;
+  pdfUrl?: string;
+  youtubeUrl: string;
+  additionalTabs?: {
+    title: string;
+    content: string;
+  }[];
+  pdfCarousel?: string[];
+}
+
+const { 
+  name, 
+  image, 
+  quickReference, 
+  technicalDetails, 
+  safetyPractices, 
+  pdfUrl,
+  youtubeUrl,
+  additionalTabs = [],
+  pdfCarousel = []
+} = Astro.props;
+
+// Add flags to check for special equipment types
+const isManMachineKit = name === "MAN vs MACHINE KIT";
+const isHolmatroVStrut = name === "Holmatro V-Strut";
+const isDewaltCutOffSaw = name === "Dewalt 9″ Cordless Cut Off Saw";
+const isMultiforceBag = name === "Paratech MULTIFORCE Bag";
+const isVskController = name === "Paratech VSK V2 CONTROLLER";
+const isSupporterX2 = name === "Paratech SUPPORTER X2";
+const isMilwaukeeSmallAngleGrinder = name === "Milwaukee 4.5″5″ Angle Grinder";
+const isMilwaukeeLargeAngleGrinder = name === "Milwaukee 7 in. 9 in. Large Angle Grinder";
+const isFlexvoltPowerStation = name === "FLEXVOLT Portable Power Station";
+const isExtractorBlade = name === "Extractor Blade";
+
+const tabs = [
+  { id: 'quick', title: 'Quick Reference', content: quickReference },
+  // Only include Technical Details tab if it's NOT the Extractor Blade
+  ...(isExtractorBlade ? [] : [{ id: 'technical', title: 'Technical Details', content: technicalDetails }]),
+  // Only include the Safety tab if it's NOT the FLEXVOLT Portable Power Station
+  ...((isFlexvoltPowerStation || isExtractorBlade) ? [] : [{ id: 'safety', title: 'Safety', content: safetyPractices }]),
+  ...(pdfUrl ? [{ id: 'pdf', title: 'PDF', content: name === "MAN vs MACHINE KIT" ? "/Equipment/MAN vs MACHINE KIT/paratech-man-machine-kit-1.jpg" : name === "Holmatro V-Strut" ? "/Equipment/Holmatro V-Strut/v strut pdf.png" : name === "Paratech MULTIFORCE Bag" ? "/Equipment/Paratech MULTIFORCE Bag/Paratech MULTIFORCE Bag pdf.png" : name === "Paratech VSK V2 CONTROLLER" ? "/Equipment/Paratech VSK V2 CONTROLLER/vsk controller pdf.png" : pdfUrl }] : []),
+  ...((pdfCarousel && pdfCarousel.length > 0) ? [{ id: 'pdf-carousel', title: 'PDF', content: JSON.stringify(pdfCarousel) }] : []),
+  ...((youtubeUrl && youtubeUrl.trim() && !isExtractorBlade) ? [{ id: 'video', title: 'Video Guide', content: youtubeUrl.trim() }] : []),
+  ...additionalTabs.map((tab, index) => ({
+    id: `additional-${index}`,
+    title: tab.title,
+    content: tab.content
+  }))
+];
+---
+
+<div class="card overflow-hidden">
+  <div class="flex flex-col lg:flex-row gap-8 p-4 md:p-8" id="cardLayout">
+    <div class="lg:w-2/5" id="imageContainer">
+      <div class="aspect-square rounded-lg overflow-hidden bg-gray-50 shadow-inner max-w-xs mx-auto">
+        <img 
+          src={image} 
+          alt={name}
+          class="w-full h-full object-contain p-2 sm:p-4"
+          loading="lazy"
+        />
+      </div>
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mt-4 lg:mt-6 text-center lg:text-left text-gray-900">{name}</h2>
+    </div>
+    
+    <div class="lg:w-3/5" id="contentContainer">
+      <div class="tabs-container">
+        <div class="flex flex-wrap gap-2 border-b border-gray-200 pb-1">
+          {tabs.map((tab, index) => (
+            <button
+              class="tab px-3 sm:px-4 py-3 sm:py-2.5 text-sm font-medium rounded-t-md transition-all duration-200 hover:bg-gray-50 text-gray-600 min-w-[80px] sm:min-w-0 touch-manipulation focus:outline-none focus:ring-2 focus:ring-black/20 flex-grow sm:flex-grow-0"
+              data-tab={tab.id}
+              data-active={index === 0}
+            >
+ 
+              <span class="whitespace-nowrap block">{tab.title}
+</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="tab-panels mt-3 sm:mt-4 lg:mt-4">
+          {tabs.map((tab, index) => (
+            <div
+              class="tab-panel"
+              data-tab={tab.id}
+              data-active={index === 0}
+            >
+              {tab.id === 'pdf' && (isManMachineKit || isHolmatroVStrut || isMultiforceBag || isVskController) ? (
+                <div class="w-full rounded-lg overflow-hidden shadow-lg bg-gray-50 fullwidth-container mt-2">
+                  <img
+                    src={tab.content}
+                    alt={`${name} Details`}
+ loading="lazy"
+                    class="w-full object-contain"
+                    style="height: 800px; max-width: 100%;"
+                  />
+                </div>
+              ) : tab.id === 'pdf-carousel' ? (
+                <div class="w-full rounded-lg overflow-hidden shadow-lg bg-gray-50 fullwidth-container">
+                  <div class="carousel-container relative">
+                    <div class="carousel-slides">
+                      {JSON.parse(tab.content).map((src, i) => (
+                        <div class="carousel-slide" data-slide={i} data-active={i === 0 ? "true" : "false"}>
+                          <img
+                            src={src}
+                            alt={`${name} PDF image ${i+1}`}
+ loading="lazy"
+                            class="w-full object-contain"
+                            style="height: 800px; max-width: 100%;"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <div class="carousel-controls flex justify-between items-center absolute bottom-4 left-1/2 transform -translate-x-1/2 gap-2 sm:gap-4 bg-black/70 text-white px-3 sm:px-4 py-2 rounded-full">
+                      <button class="carousel-prev-btn px-3 py-2 sm:py-1 rounded hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-white/40">« Prev</button>
+                      <div class="carousel-indicator text-sm"></div>
+                      <button class="carousel-next-btn px-3 py-2 sm:py-1 rounded hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-white/40">Next »</button>
+                    </div>
+                  </div>
+                </div>
+              ) : tab.id === 'pdf' ? (
+                <div class="w-full rounded-lg overflow-hidden shadow-lg bg-gray-50">
+                  <iframe
+                    src={tab.content}
+                    title="PDF Document"
+                    class="w-full h-full rounded-lg"
+                    style="height: 800px;"
+                    type="application/pdf"
+                  />
+                </div>
+              ) : tab.id === 'video' ? (
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg fullwidth-container" style="height: 600px;">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${(() => {
+                      // More robust YouTube URL parsing
+                      if (tab.content.includes('v=')) {
+                        return tab.content.split('v=')[1].split('&')[0];
+                      } else if (tab.content.includes('youtu.be/')) {
+                        return tab.content.split('youtu.be/')[1].split('?')[0];
+                      }
+                      return tab.content.split('/').pop();
+                    })()}`}
+                    title="YouTube video player"
+                    allowfullscreen
+                    class="w-full h-full rounded-lg"
+                    style="height: 100%;"
+                  />
+                </div>
+              ) : tab.title === 'Blade' && (isDewaltCutOffSaw || isMilwaukeeSmallAngleGrinder || isMilwaukeeLargeAngleGrinder) ? (
+                <div class="w-full rounded-lg overflow-hidden shadow-lg bg-gray-50 fullwidth-container mt-0 pt-0">
+                  <img
+                    src={tab.content}
+                    alt={`${name} Rescue Blade`}
+                    class="w-full object-contain object-top -mt-8"
+ 
+                    loading="lazy"
+                    style="height: 800px; max-width: 100%;"
+                  />
+                </div>
+              ) : (
+                <div class="prose max-w-none text-gray-700 text-sm sm:text-base lg:text-lg px-1 sm:px-2 pt-2">
+                  <p class="whitespace-pre-wrap leading-relaxed">{tab.content}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupTabs() {
+    const containers = document.querySelectorAll('.tabs-container');
+    
+    containers.forEach(container => {
+      const tabs = container.querySelectorAll('.tab');
+      const panels = container.querySelectorAll('.tab-panel');
+      const card = container.closest('.card');
+      
+      if (!card) return;
+      
+      const imageContainer = card.querySelector('#imageContainer');
+      const contentContainer = card.querySelector('#contentContainer');
+      
+      function handleTabClick() {
+        // Check if PDF, Video or Blade tab is active
+        const pdfTab = Array.from(tabs).find(t => 
+          t.getAttribute('data-tab') === 'pdf' && 
+          t.getAttribute('data-active') === 'true'
+        );
+        
+        const videoTab = Array.from(tabs).find(t => 
+          t.getAttribute('data-tab') === 'video' && 
+          t.getAttribute('data-active') === 'true'
+        );
+        
+        const bladeTab = Array.from(tabs).find(t => 
+          t.textContent.trim() === 'Blade' && 
+          t.getAttribute('data-active') === 'true'
+        );
+        
+        // Get the equipment name
+        const equipmentName = card.querySelector('h2')?.textContent;
+        const isManMachineKit = equipmentName === 'MAN vs MACHINE KIT';
+        const isHolmatroVStrut = equipmentName === 'Holmatro V-Strut';
+        const isVskController = equipmentName === 'Paratech VSK V2 CONTROLLER';
+        const isSupporterX2 = equipmentName === 'Paratech SUPPORTER X2';
+        const isMultiforceBag = equipmentName === 'Paratech MULTIFORCE Bag';
+        const isDewaltCutOffSaw = equipmentName === 'Dewalt 9″ Cordless Cut Off Saw';
+        const isMilwaukeeSmallAngleGrinder = equipmentName === 'Milwaukee 4.5″5″ Angle Grinder';
+        const isMilwaukeeLargeAngleGrinder = equipmentName === 'Milwaukee 7 in. 9 in. Large Angle Grinder';
+        
+        if ((pdfTab && (isManMachineKit || isHolmatroVStrut || isMultiforceBag || isVskController || isSupporterX2)) || videoTab || (bladeTab && (isDewaltCutOffSaw || isMilwaukeeSmallAngleGrinder || isMilwaukeeLargeAngleGrinder))) {
+          // Hide image container and expand content area
+          if (imageContainer) imageContainer.style.display = 'none';
+          if (contentContainer) contentContainer.classList.remove('lg:w-3/5');
+          if (contentContainer) contentContainer.style.width = '100%';
+        } else {
+          // Show image container and reset content area
+          if (imageContainer) imageContainer.style.display = '';
+          if (contentContainer) contentContainer.classList.add('lg:w-3/5');
+          if (contentContainer) contentContainer.style.width = '';
+        }
+      }
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetId = tab.getAttribute('data-tab');
+          
+          // Update tabs
+          tabs.forEach(t => {
+            t.setAttribute('data-active', 'false');
+            t.classList.remove('bg-black', 'text-white');
+          });
+          tab.setAttribute('data-active', 'true');
+          tab.classList.add('bg-black', 'text-white');
+          
+          // Update panels
+          panels.forEach(panel => {
+            const isActive = panel.getAttribute('data-tab') === targetId;
+            panel.setAttribute('data-active', String(isActive));
+            panel.style.display = isActive ? 'block' : 'none';
+          });
+          
+          // Handle special layout for PDF, video or blade tabs
+          setTimeout(handleTabClick, 10);
+        });
+      });
+
+      // Initialize first tab
+      const firstTab = tabs[0];
+      if (firstTab) {
+        firstTab.classList.add('bg-black', 'text-white');
+        const firstPanel = panels[0];
+        if (firstPanel) {
+          firstPanel.style.display = 'block';
+        }
+        panels.forEach((panel, index) => {
+          if (index !== 0) {
+            panel.style.display = 'none';
+          }
+        });
+      }
+      
+      // Run layout check on initial load
+      handleTabClick();
+      
+      // Initialize carousels if present
+      initCarousels(container);
+    });
+  }
+
+  
+  function initCarousels(container) {
+    const carouselContainers = container.querySelectorAll('.carousel-container');
+    
+    console.log('Found carousel containers:', carouselContainers.length);
+    carouselContainers.forEach(carousel => {
+      console.log('Init carousel:', carousel);
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const prevBtn = carousel.querySelector('.carousel-prev-btn');
+      const nextBtn = carousel.querySelector('.carousel-next-btn');
+      const indicator = carousel.querySelector('.carousel-indicator');
+      
+      if (!slides.length || !prevBtn || !nextBtn || !indicator) return;
+      
+      let currentSlide = 0;
+      console.log('Slides found:', slides.length);
+      const totalSlides = slides.length;
+      
+      // Set initial indicator text
+      updateIndicator();
+      
+      function updateIndicator() {
+        indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+      }
+      
+      function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => {
+          slide.setAttribute('data-active', 'false');
+          slide.style.display = 'none';
+        });
+        
+        // Show the current slide
+        slides[index].setAttribute('data-active', 'true');
+        slides[index].style.display = 'block';
+        
+        updateIndicator();
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      });
+      
+      // Initialize first slide
+      showSlide(currentSlide);
+    });
+  }
+
+  setupTabs();
+  document.addEventListener('astro:page-load', setupTabs);
+  
+  // Make sure carousels are initialized even after dynamic content changes
+  document.addEventListener('astro:after-swap', () => {
+    setupTabs();
+  });
+</script>
+
+<style>
+  .tab {
+    @apply hover:bg-gray-50 border border-transparent text-gray-600;
+  }
+  
+  /* Use standard CSS for touch action property */
+
+  .tab[data-active="true"] {
+    @apply bg-black text-white hover:bg-black/90 border-black shadow-sm;
+  }
+
+  .prose:not(.video-container) {
+    @apply text-sm leading-relaxed;
+    line-height: 1.7;
+  }
+
+  .prose p {
+    @apply mb-3 sm:mb-4;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside mb-3 sm:mb-4 space-y-1.5 sm:space-y-2;
+  }
+
+  .prose ul li {
+    @apply ml-2 sm:ml-4 py-0.5;
+  }
+
+  /* Smooth transitions for tab panels */
+  .tab-panel {
+    @apply transition-opacity duration-200;
+    display: none;
+  }
+
+  .tab-panel[data-active="true"] {
+    display: block;
+  }
+  
+  /* Full width container for large content like PDF and video */
+  .fullwidth-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Mobile optimizations for fullwidth containers */
+  @media (max-width: 640px) {
+    .fullwidth-container {
+      max-height: 70vh;
+    }
+  }
+  
+  .fullwidth-container img,
+  .fullwidth-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Ensure aspect ratio for videos */
+  .aspect-w-16.aspect-h-9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 9/16 = 0.5625 */
+  }
+
+  /* Better aspect ratio control for mobile */
+  @media (max-width: 640px) {
+    .aspect-w-16.aspect-h-9 {
+      max-height: 70vh;
+    }
+  }
+  
+  .aspect-w-16.aspect-h-9 iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  /* Carousel styles */
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-slides {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .carousel-slide[data-active="true"] {
+    display: block;
+  }
+
+  /* Additional mobile optimizations for carousel controls */
+  @media (max-width: 640px) {
+    .carousel-controls {
+      width: auto;
+      min-width: 180px;
+      padding: 0.35rem 0.75rem;
+    }
+    
+    .carousel-prev-btn,
+    .carousel-next-btn {
+      min-width: 44px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  .carousel-controls {
+    z-index: 10;
+  }
+</style>

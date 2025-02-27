@@ -1,0 +1,6 @@
+Technical & Operational Details
+
+    Design: Compact form factor with integrated lifting mechanism.
+    Pressure Capacity: Designed to operate at working pressures typically around 100–150 psi.
+    Integration: Can be used alongside hydraulic spreaders or air bags to stabilize vehicles.
+    Portability: Lightweight and easily stored on a rescue apparatus.

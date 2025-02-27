@@ -1,0 +1,7 @@
+Technical & Operational Details
+
+    Wheel Size: Compatible with 7″ and 9″ wheels.
+    RPM: Capable of up to 8,500 RPM.
+    Motor: Brushless M18 FUEL motor for efficient, high-torque operation.
+    Features: Equipped with overload protection and variable speed control.
+    Battery Integration: Uses the Milwaukee M18 battery system for longer run-time and compatibility across tools.

@@ -1,0 +1,539 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EquipmentCard from '../components/EquipmentCard.astro';
+
+// Import text files directly
+const equipmentFiles = import.meta.glob('../../../Equipment/**/*.txt', { as: 'raw', eager: true });
+
+// Helper function to extract YouTube URL from content
+function extractYoutubeUrl(content: string): string {
+  if (!content) return '';
+  const lines = content.split('\n');
+  const urlLine = lines.find(line => line.includes('youtube.com'));
+  if (!urlLine) return '';
+  return urlLine.trim();
+}
+
+const equipment = [
+  {
+    name: "MAN vs MACHINE KIT",
+    image: "/Equipment/MAN vs MACHINE KIT/MAN vs MACHINE KIT.png",
+    quickReference: `The Man & Machine Kit is an integrated system designed for complex extrication and machine rescue operations. It combines multiple Paratech air lifting bags, a plastic felling wedge, a master control kit, assorted hoses, fittings, and a robust Pelican case for transport. All components work together to provide controlled, gradual lifting of heavy machinery or trapped victims.
+
+Quick Reference Bullet Points
+
+    Components: Multiple air lifting bags (sizes KPI-12, KPI-5, KPI-3), hoses, fittings, control kit, Pelican case
+    Operation: Use deadman controller to inflate bags gradually; always monitor pressure (max 150 psi)
+    Integration: Color-coded hoses and standardized fittings ensure rapid, error-free setup
+    Safety: Follow "lift an inch, crib an inch" technique; use PPE and ensure two-person operation
+    Maintenance: Post-use cleaning, inspection for leaks/damage, and proper storage in Pelican case`,
+    technicalDetails: `Components: Multiple air lifting bags (sizes KPI-12, KPI-5, KPI-3), hoses, fittings, control kit, Pelican case
+Operation: Use deadman controller to inflate bags gradually; always monitor pressure (max 150 psi)
+Integration: Color-coded hoses and standardized fittings ensure rapid, error-free setup
+Safety: Follow "lift an inch, crib an inch" technique; use PPE and ensure two-person operation
+Maintenance: Post-use cleaning, inspection for leaks/damage, and proper storage in Pelican case`,
+    safetyPractices: `PPE Requirements:
+- Safety glasses and gloves required during setup and operation
+- Steel-toed boots when handling heavy components
+- Hard hat when working under lifted loads
+
+Operational Safety:
+- Always work in pairs
+- Follow "lift an inch, crib an inch" protocol
+- Never exceed maximum pressure (150 psi)
+- Keep clear of pinch points
+- Monitor load stability continuously
+
+Equipment Care:
+- Inspect all components before and after use
+- Clean and dry equipment before storage
+- Store in provided Pelican case
+- Report any damage or leaks immediately`,
+    pdfUrl: "/Equipment/MAN vs MACHINE KIT/Brochure-Man-and-Machine-Kit.pdf",
+    youtubeUrl: "https://www.youtube.com/watch?v=t35wO6hToyc",
+    additionalTabs: [
+      {
+        title: "Included Items",
+        content: `Air Lifting Bags:
+    16DB2 KPI-12 MAXIFORCE LIFT BAG 15×15 (2 pieces)
+    • High-capacity (up to 12-ton lift)
+    • Large footprint for heavy, broad loads
+    16DA3 KPI-5 MAXIFORCE LIFT BAG 10×10 (2 pieces)
+    • Medium capacity (approximately 5-ton lift)
+    • For more precise, smaller lifting operations
+    16DA2 KPI-3 MAXIFORCE LIFT BAG 6×12 (2 pieces)
+    • Lower capacity (3-ton lift)
+    • Ultra-low profile for tight spaces
+Accessories & Control Components:
+    13EC1 Plastic Felling Wedge
+    • Non-sparking, used to initiate gaps or separate components
+    LABEL MAN & MACHINE KIT
+    • Inventory and operational instructions included
+    150 PSI MASTER CONTROL KIT G2 INSERT
+    • Provides pre-set control of inflation to 150 psi (with relief features)
+    Air Hoses (14DC1 – 14DC5)
+    • 16′ hoses in various colors; quick-connect couplings
+    Fittings:
+    • 11DA5 1/4″ NPTF Nipple, 11DF17 Left-Handed Nipple, 11DA25 Locking Tire Chuck & Nipple, 11DD24 Industrial Interchange Nipple, 11BJ3 Y Connector, 11BI10 Industrial Twist Lock & Valve
+    14IB5 DEADMAN 150 ALB CONTR G3
+    • Safety device for emergency control
+    14BC5 REGULATOR ALB G3 PRESET CGA
+    • Fixed-output regulator for consistent air supply
+    14DF2 INLINE RELIEF VALVE PSI 135 GEN 2
+    • Safety relief valve for overpressure protection
+    1610 CASE, PELICAN
+    • Durable, transport case designed for rugged conditions`
+      },
+      {
+        title: "Setup & Operation",
+        content: `Deployment:
+    Open the Pelican case; verify all components are present and in good condition.
+    Connect the preset regulator to an SCBA or high-pressure air source.
+    Attach color-coded 16′ hoses to the master control kit and air lifting bags.
+    Use the Deadman controller to slowly inflate the bags under the load (start with the smallest bag for delicate extrications).
+    Gradually lift the machine or trapped victim, monitoring pressure on the digital controller.
+    If needed, use the plastic felling wedge to initiate a gap before bag insertion.
+
+Integration:
+• All air bags use the same high-pressure regulator and controller for synchronized lifting.
+• Hoses and fittings are color-coded for rapid connection.
+• The kit's modular design lets you tailor the setup to the specific rescue scenario (e.g., using KPI-3 for tight gaps and KPI-12 for large load distribution).`
+      }
+    ]
+  },
+  {
+    name: "Milwaukee 4.5″5″ Angle Grinder",
+    image: "/Equipment/Milwaukee 4.5″5″ Angle Grinder/Milwaukee 4.5″5″ Angle Grinder.png",
+    quickReference: equipmentFiles["../../../Equipment/Milwaukee 4.5″5″ Angle Grinder/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Milwaukee 4.5″5″ Angle Grinder/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Milwaukee 4.5″5″ Angle Grinder/Safety & Best Practices.txt"],
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Milwaukee 4.5″5″ Angle Grinder/YouTube Guide.txt"]),
+    additionalTabs: [
+      {
+        title: "Blade",
+        content: "/Equipment/Dewalt 9\u2033 Cordless Cut Off Saw/Dewalt9-inW2.jpg"
+      }
+    ]
+  },
+  {
+    name: "Paratech VSK V2 CONTROLLER",
+    image: "/Equipment/Paratech VSK V2 CONTROLLER/Paratech VSK V2 CONTROLLER.png",
+    quickReference: equipmentFiles["../../../Equipment/Paratech VSK V2 CONTROLLER/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Paratech VSK V2 CONTROLLER/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Paratech VSK V2 CONTROLLER/Safety & Best Practices.txt"],
+    pdfUrl: "/Equipment/Paratech VSK V2 CONTROLLER/vsk controller pdf.png",
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Paratech VSK V2 CONTROLLER/YouTube Guide.txt"])
+  },
+  {
+    name: "Milwaukee 7 in. 9 in. Large Angle Grinder",
+    image: "/Equipment/Milwaukee 7 in.  9 in. Large Angle Grinder/Milwaukee 7 in.  9 in. Large Angle Grinder.png",
+    quickReference: equipmentFiles["../../../Equipment/Milwaukee 7 in.  9 in. Large Angle Grinder/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Milwaukee 7 in.  9 in. Large Angle Grinder/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Milwaukee 7 in.  9 in. Large Angle Grinder/Safety & Best Practices.txt"],
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Milwaukee 7 in.  9 in. Large Angle Grinder/YouTube Guide.txt"]),
+    additionalTabs: [
+      {
+        title: "Blade",
+        content: "/Equipment/Dewalt 9\u2033 Cordless Cut Off Saw/Dewalt9-inW2.jpg"
+      }
+    ]
+  },
+  {
+    name: "Milwaukee Deep Cut Band Saw",
+    image: "/Equipment/Milwaukee Deep Cut Band Saw/Milwaukee Deep Cut Band Saw.png",
+    quickReference: equipmentFiles["../../../Equipment/Milwaukee Deep Cut Band Saw/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Milwaukee Deep Cut Band Saw/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Milwaukee Deep Cut Band Saw/Safety & Best Practices.txt"],
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Milwaukee Deep Cut Band Saw/YouTube Guide.txt"])
+  },
+  {
+    name: "Paratech MULTICHAIN BASE",
+    image: "https://placehold.co/400x400?text=No+Image+Available",
+    quickReference: equipmentFiles["../../../Equipment/Paratech MULTICHAIN BASE/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Paratech MULTICHAIN BASE/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Paratech MULTICHAIN BASE/Safety & Best Practices.txt"],
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Paratech MULTICHAIN BASE/YouTube Guide.txt"])
+  },
+  {
+    name: "Paratech MULTIFORCE Bag",
+    image: "/Equipment/Paratech MULTIFORCE Bag/Paratech MULTIFORCE Bag.png",
+    quickReference: equipmentFiles["../../../Equipment/Paratech MULTIFORCE Bag/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Paratech MULTIFORCE Bag/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Paratech MULTIFORCE Bag/Safety & Best Practices.txt"],
+    pdfUrl: "/Equipment/Paratech MULTIFORCE Bag/Paratech MULTIFORCE Bag pdf.png",
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Paratech MULTIFORCE Bag/YouTube Guide.txt"])
+  },
+  {
+    name: "Paratech SUPPORTER X2",
+    image: "/Equipment/Paratech SUPPORTER X2/Paratech SUPPORTER X2.png",
+    quickReference: equipmentFiles["../../../Equipment/Paratech SUPPORTER X2/Quick Reference.txt"],
+    technicalDetails: equipmentFiles["../../../Equipment/Paratech SUPPORTER X2/Technical & Operational Details.txt"],
+    safetyPractices: equipmentFiles["../../../Equipment/Paratech SUPPORTER X2/Safety & Best Practices.txt"],
+    youtubeUrl: extractYoutubeUrl(equipmentFiles["../../../Equipment/Paratech SUPPORTER X2/YouTube Guide.txt"]),
+    pdfCarousel: [
+      "/Equipment/Paratech SUPPORTER X2/pdf images/pdf 1.png",
+      "/Equipment/Paratech SUPPORTER X2/pdf images/pdf 2.png",
+      "/Equipment/Paratech SUPPORTER X2/pdf images/pdf 3.png", 
+      "/Equipment/Paratech SUPPORTER X2/pdf images/pdf 4.png",
+      "/Equipment/Paratech SUPPORTER X2/pdf images/pdf 5.png"
+    ]
+  },
+  {
+    name: "Dewalt 9″ Cordless Cut Off Saw",
+    image: "/Equipment/Dewalt 9″ Cordless Cut Off Saw/Dewalt 9 Cordless Cut Off Saw.png",
+    quickReference: `This cordless cut-off saw kit delivers high power and portability, ideal for cutting concrete, metal, and impact glass. Powered by DeWalt's 60V MAX FLEXVOLT system, it combines a brushless motor with a 9″ blade and comes with a 9Ah battery for extended run-time.
+
+Quick Reference Bullet Points:
+    Blade Diameter: 9″
+    Speed: Up to 6,500 RPM
+    Cutting Depth: ~3–3/4″
+    Dust Suppression: Integrated water ports
+    Battery: 9Ah, part of FLEXVOLT system
+    Safety: Always use dual-hand operation and proper PPE`,
+    technicalDetails: `Blade & RPM: Uses a 9″ blade spinning up to 6,500 RPM.
+Cutting Depth: Capable of cutting through 3–3/4″ deep concrete or metal.
+Motor: Brushless design increases efficiency and durability.
+Water Feed Ports: Integrated water delivery for dust suppression.
+Battery Integration: Uses the same battery ecosystem as other DeWalt 60V tools.
+Quick Blade Change: Tool-free blade change system.`,
+    safetyPractices: `PPE: Use face shields, hearing protection, and dust masks (especially for concrete cutting).
+Water Supply: Always connect water for dust suppression when cutting masonry.
+Operation: Use both hands at all times; avoid side loading the blade.
+Maintenance: Clean the blade guard and water ports after use; inspect blade integrity before each job.`,
+    youtubeUrl: "https://www.youtube.com/watch?v=pdvUaKlzxfE",
+    additionalTabs: [
+      {
+        title: "Blade",
+        content: "/Equipment/Dewalt 9\u2033 Cordless Cut Off Saw/Dewalt9-inW2.jpg"
+      }
+    ]
+  },
+  {
+    name: "FLEXVOLT Portable Power Station",
+    image: "/Equipment/FLEXVOLT Portable Power Station/FLEXVOLT Portable Power Station.png",
+    quickReference: `The FLEXVOLT Portable Power Station is a battery-based, high-output power source designed to drive DeWalt's cordless 60V MAX and 20V MAX tools. It is engineered for portability, rapid charging, and reliable operation in demanding fire/rescue scenarios.
+
+Quick Reference Bullet Points:
+    Peak Power: ~1800W output
+    Compatibility: Works with 60V/20V tools
+    Connections: AC, DC, USB outputs available
+    Maintenance: Keep contacts clean, store in dry environment
+    Safety: Use proper PPE and follow lockout procedures`,
+    technicalDetails: `Power Output: Provides up to 1800W of peak power; engineered to power multiple cordless tools simultaneously.
+Battery Technology: Uses DeWalt's FLEXVOLT battery technology with smart energy management.
+Connections: Integrated ports (AC, DC, USB) to power or recharge additional tools on scene.
+Integration: Seamlessly works with 60V MAX and 20V MAX tool lines. Sharing battery technology reduces logistics on the fire ground.`,
+    safetyPractices: "Follow proper lockout/tagout procedures. Keep unit dry and protected from impact.",
+    youtubeUrl: ""
+  },
+  {
+    name: "Holmatro V-Strut",
+    image: "/Equipment/Holmatro V-Strut/Holmatro V-Strut.png",
+    quickReference: `A lightweight, telescopic vehicle stabilization strut designed for rapid deployment during extrication. The V-Strut integrates a V-shaped head (with serrated "snout"), a non-slip base, and a ratchet-tensioned strap system to provide reliable stabilization for overturned or shifting vehicles.
+
+Quick Reference Bullet Points:
+    Capacity: ~16 kN (3,600 lbs)
+    Mechanism: Telescopic with auto-lock pins
+    Deployment: Base on solid ground, maintain 45–60° angle
+    Maintenance: Regularly inspect V-head and lubricate moving parts`,
+    technicalDetails: `Stabilization Capacity: Typically rated around 16 kN (~3,600 lbs of support force).
+Design: Telescoping aluminum construction with auto-locking pins.
+Integrated Components: V-shaped head, base plate with non-slip grip, and integrated ratchet strap.
+Adjustability: Quick extension and fine adjustment (in increments of a few millimeters) for precise stabilization.
+Integration: Often used with other extrication tools (e.g., cribbing, spreaders) to secure vehicles before forcible entry.`,
+    safetyPractices: `PPE: Use gloves and safety footwear during setup.
+Deployment: Always position the base on solid ground; maintain a safe angle (approximately 45–60°).
+Operation: Verify that the V-snout engages a solid metal portion of the vehicle.
+Maintenance: Check for dents or worn serrations on the V-head; clean and lubricate the telescoping mechanism periodically.`,
+    pdfUrl: "/Equipment/Holmatro V-Strut/v strut pdf.png",
+    youtubeUrl: "https://www.youtube.com/watch?v=t3FTsawONPw"
+  },
+  {
+    name: "Milwaukee SDS Hammer",
+    image: "/Equipment/Milwaukee SDS hammer/Milwaukee SDS hammer.png",
+    quickReference: `A compact, cordless SDS hammer designed for drilling and light chiseling in concrete, masonry, and steel. Powered by Milwaukee's M18 FUEL system, it features a brushless motor, variable speed, and high impact energy for precision work in rescue or structural breaching tasks.
+
+Quick Reference Bullet Points:
+    Impact Energy: ~2 Joules
+    RPM: 1,400 max, 4,900 BPM
+    Modes: Drill, hammer-drill, chipping
+    SDS: SDS-plus system for bit changes
+    Integration: Uses M18 battery system
+    Safety: Always use proper PPE and two-handed operation`,
+    technicalDetails: `Impact Energy: Approximately 2 Joules per blow.
+Speed: Up to 1,400 RPM with 4,900 BPM (blows per minute).
+Modes: Drill-only, hammer-drill, and hammer-only (chipping) modes.
+SDS System: Uses SDS-plus bits for fast and secure bit changes.
+Integration: Shares battery compatibility with the entire M18 tool family.`,
+    safetyPractices: `PPE: Eye protection, hearing protection, and dust masks are essential.
+Operational Technique: Use firm, two-handed grip; do not force the tool.
+Maintenance: Clean the SDS chuck and bit before use; periodically check for wear on the bit retainer.
+Battery Care: Monitor battery temperature; use high-output packs for prolonged heavy-duty tasks.`,
+    youtubeUrl: ""
+  },
+  {
+    name: "Extractor Blade",
+    image: "/Equipment/Extractor Blade/extractor blade.png",
+    quickReference: `Small Sized EXTRACTOR Rescue Blades™
+
+
+Specifications
+
+    Blades fit most small saws
+    Diameters: 4.5″  and  9″ inch
+
+Cuts These Materials:
+Auto bodies & frames
+
+Iron & Stainless steel
+
+Steel up to 5/8-in
+
+Ductile pipe
+
+Aluminum
+
+Brass
+
+Copper
+
+Guard Rail
+
+Hard  Brick
+
+Concrete Block
+
+Reinforced concrete w/ rebar
+
+Tempered chain
+
+Hurricane glass
+
+Security glass
+
+Bulletproof glass
+
+Fiberglass
+
+PVC pipe & Plastic
+
+Roof tile
+
+Floor tile
+
+Metal roofing
+
+Steel doors
+
+Security bars
+
+Door locks & deadbolts
+
+Wood 2×4 / plywood and more!`,
+    technicalDetails: "",
+    safetyPractices: ""
+  }
+];
+
+// Sort equipment alphabetically
+equipment.sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<Layout title="UASI Equipment Catalog">
+  <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
+        <img 
+          src="/logo edited.png" 
+          alt="UASI Logo" 
+          class="h-12 sm:h-16 md:h-24 w-auto object-contain"
+        />
+        <div class="flex-1">
+          <div class="bg-gray-50 p-2 sm:p-2.5 rounded-lg shadow-inner">
+            <label for="equipmentSelect" class="block text-sm font-medium text-gray-600 mb-0.5 sm:mb-1">
+              Equipment Selection
+            </label>
+            <p class="text-xs text-gray-400 mb-2">
+              Select equipment from the list below to view details.
+            </p>
+            <div class="relative">
+              <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
+              <select
+                class="block w-full px-3 py-3 sm:py-2 pr-10 text-base sm:text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent bg-white cursor-pointer transition-colors hover:bg-gray-50"
+                id="equipmentSelect"
+                size="1"
+                aria-label="Select equipment items"
+              >
+              <option value="">-- Select Equipment --</option>
+              {equipment.map(item => (
+                <option value={item.name}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto py-6 sm:py-8 md:py-12 px-3 sm:px-4 md:px-6">
+    <div class="equipment-grid space-y-8 max-w-6xl mx-auto" id="equipmentGrid">
+      {equipment.map(item => (
+        <div class="equipment-card hidden" data-name={item.name}>
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300">
+            <EquipmentCard
+              name={item.name}
+              image={item.image}
+              quickReference={item.quickReference}
+              technicalDetails={item.technicalDetails}
+              safetyPractices={item.safetyPractices}
+              pdfUrl={item.pdfUrl}
+              pdfCarousel={item.pdfCarousel}
+              youtubeUrl={item.youtubeUrl}
+              additionalTabs={item.additionalTabs || []}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div id="noSelection" class="text-center py-16">
+      <div class="max-w-md mx-auto bg-gray-50 rounded-xl p-8 shadow-sm">
+        <svg class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+        <p class="text-gray-600 text-lg">
+          Select equipment from the dropdown above to view details.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  function setupEquipmentSelect() {
+    const select = document.getElementById('equipmentSelect') as HTMLSelectElement;
+    const equipmentCards = Array.from(document.querySelectorAll('.equipment-card'));
+    const noSelection = document.getElementById('noSelection');
+
+    if (!select || !equipmentCards || !noSelection) return;
+
+    // Hide all cards initially
+    equipmentCards.forEach(card => {
+      card.classList.add('hidden');
+    });
+
+    function updateDisplay() {
+      const selectedValue = select.value;
+      const selectedCard = equipmentCards.find(card => card.getAttribute('data-name') === selectedValue);
+
+      // Hide all cards first
+      equipmentCards.forEach(card => {
+        card.classList.add('hidden');
+      });
+
+      if (selectedCard) {
+        selectedCard.classList.remove('hidden');
+        noSelection.classList.add('hidden');
+        // Smooth scroll to the card
+        selectedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        noSelection.classList.remove('hidden');
+      }
+    }
+
+    // Handle selection changes
+    select.addEventListener('change', updateDisplay);
+  }
+
+  // Setup equipment select on page load
+  setupEquipmentSelect();
+
+  // Setup equipment select when content updates
+  document.addEventListener('astro:page-load', setupEquipmentSelect);
+  document.addEventListener('astro:after-swap', setupEquipmentSelect);
+</script>
+
+<style>
+  .hidden {
+    display: none;
+  }
+
+  select[multiple] {
+    height: auto;
+  }
+
+  select {
+    font-size: 1rem;
+  }
+
+  select option {
+    padding: 1rem;
+    font-size: 1rem;
+    margin: 0.25rem 0;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+  }
+
+  select option:checked {
+    background-color: rgb(59 130 246) !important;
+    color: white;
+  }
+
+  select option:hover {
+    background-color: #f3f4f6;
+  }
+
+  /* Custom scrollbar for the select element */
+  select {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f8fafc;
+  }
+
+  select::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  select::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 4px;
+  }
+
+  select::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  select::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+
+  /* Equipment card transitions and mobile optimization */
+  .equipment-card {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .equipment-card.hidden {
+    display: none;
+  }
+
+  .equipment-card:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    select option {
+      padding: 1rem;
+    }
+    .equipment-card:not(.hidden) {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

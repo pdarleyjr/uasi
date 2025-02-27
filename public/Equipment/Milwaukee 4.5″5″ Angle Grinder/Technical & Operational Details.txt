@@ -1,0 +1,7 @@
+Technical & Operational Details
+
+    Wheel Size: Designed for 4.5″ and 5″ grinding wheels.
+    Speed: Variable speeds up to approximately 9,000 RPM.
+    Switch: Paddle switch requiring constant pressure (enhancing safety).
+    Battery: Operates on Milwaukee’s 18V platform, ensuring extended runtime with compatible batteries.
+    Ergonomics: Compact, lightweight design for enhanced maneuverability in tight spaces.
