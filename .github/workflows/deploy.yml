@@ -16,6 +16,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ASTRO_SITE: 'https://pdarleyjr.github.io'
+      ASTRO_BASE: '/uasi'
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
@@ -25,6 +28,11 @@ jobs:
         with:
           # path: ./your-sub-folder # The root location of your Astro project inside the repository
           node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18.
+      
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        # with:
+        #   path: ./dist
 
   deploy:
     needs: build
