@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://pdarleyjr.github.io',
-  base: "/uasi",
+  base: '/uasi',
   integrations: [tailwind()],
   output: 'static',
   build: {
