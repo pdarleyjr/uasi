@@ -1,0 +1,6 @@
+Safety & Best Practices
+
+    Operation: Secure the device firmly before use; follow manufacturer’s step-by-step setup.
+    PPE: Use gloves and protective eyewear during deployment.
+    Maintenance: Inspect seals and connections regularly for leaks; clean after exposure to debris.
+    Usage: Best used in coordination with other stabilization tools to distribute load evenly.

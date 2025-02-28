@@ -1,0 +1,6 @@
+Technical & Operational Details
+
+    Design: Modular chain base that distributes load evenly.
+    Capacity: Engineered to support heavy loads (typically up to several tons).
+    Integration: Can be coupled with spreaders, cutters, or air bag systems for a complete rescue setup.
+    Installation: Simple connection via standardized chain links and quick connect fittings.

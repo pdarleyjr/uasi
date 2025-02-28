@@ -1,0 +1,12 @@
+Paratech VSK V2 CONTROLLER
+
+Summary
+
+The VSK V2 Controller is an electronic control unit for regulating the pressure and inflation of Paratech air bag systems. It allows for precise control over multiple bag circuits in rig rescue operations.
+
+Quick Reference Bullet Points
+
+    Channels: Dual-channel pressure control
+    Display: Digital pressure readout
+    Integration: For Paratech air bag systems only
+    Maintenance: Regular calibration recommended

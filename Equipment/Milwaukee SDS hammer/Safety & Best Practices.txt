@@ -1,0 +1,6 @@
+Safety & Best Practices
+
+    PPE: Eye protection, hearing protection, and dust masks are essential.
+    Operational Technique: Use firm, two-handed grip; do not force the tool.
+    Maintenance: Clean the SDS chuck and bit before use; periodically check for wear on the bit retainer.
+    Battery Care: Monitor battery temperature; use high-output packs for prolonged heavy-duty tasks.

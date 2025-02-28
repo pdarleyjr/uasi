@@ -1,0 +1,6 @@
+Technical & Operational Details
+
+    Function: Electronic control of air bag inflation and pressure monitoring.
+    Output: Multiple channels with digital displays showing current pressure.
+    Integration: Interfaces with Paratech air bags, regulators, and hoses.
+    Features: Pre-set pressure relief, adjustable inflation rate, and dual-channel control for simultaneous operation.

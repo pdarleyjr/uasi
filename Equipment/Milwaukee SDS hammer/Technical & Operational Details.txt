@@ -1,0 +1,7 @@
+Technical & Operational Details
+
+    Impact Energy: Approximately 2 Joules per blow.
+    Speed: Up to 1,400 RPM with 4,900 BPM (blows per minute).
+    Modes: Drill-only, hammer-drill, and hammer-only (chipping) modes.
+    SDS System: Uses SDS-plus bits for fast and secure bit changes.
+    Integration: Shares battery compatibility with the entire M18 tool family.

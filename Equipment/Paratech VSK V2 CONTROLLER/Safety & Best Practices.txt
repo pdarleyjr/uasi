@@ -1,0 +1,6 @@
+Safety & Best Practices
+
+    Operation: Follow manufacturer’s instructions for setting pressure; use only with compatible Paratech components.
+    PPE: Operate in dry conditions; avoid exposure to water during use.
+    Maintenance: Keep digital display and control buttons clean; periodically calibrate pressure sensors.
+    Usage: Use as part of a complete rig rescue stabilization system for controlled lifting and load balancing.
